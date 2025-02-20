@@ -30,8 +30,9 @@ function moveProgram(index: number) {
 
 <template>
   <div class="program">
-    <Buttons class="buttons"
-      v-model:active-tab="activeTab"
+    <Buttons
+        class="buttons"
+        v-model:active-tab="activeTab"
     />
     <DynamicProgram
        v-for="(field, index) in programField"
@@ -42,7 +43,7 @@ function moveProgram(index: number) {
     <p class="notFound"
       v-if="programField.length < 1"
     >
-      Нет активных программ
+      {{ activeTab === 'all' ? "Нет доступных программ" : "Нет активных программ" }}
     </p>
   </div>
 </template>
@@ -56,6 +57,7 @@ function moveProgram(index: number) {
   gap: 45px;
   margin-left: 503px;
   margin-bottom: 29px;
+  width: 100%;
 }
 
 .notFound {

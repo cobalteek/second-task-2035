@@ -31,7 +31,6 @@ header {
 }
 
 .name {
-  margin: 0 0 0 0;
   position: absolute;
   top: 254px;
   left: 535px;

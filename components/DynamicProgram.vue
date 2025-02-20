@@ -2,13 +2,10 @@
 const props = defineProps<{
   title: string;
   deadline: string;
-  pathImg: {
-    type: string,
-    default: null,
-  },
+  pathImg: string;
   altImg?: string;
-  firstButton?: string
-  payed?: boolean
+  firstButton?: string;
+  payed?: boolean;
 }>();
 
 const emit = defineEmits(["move"]);
@@ -35,7 +32,10 @@ const emit = defineEmits(["move"]);
       </div>
     </div>
     <div class="buttonBox">
-      <button class="more" v-if="!payed">
+      <button
+          class="more px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95"
+          v-if="!payed"
+      >
         {{ firstButton || "Подробнее" }}
       </button>
       <button @click="emit('move')" class="pass">
@@ -56,7 +56,7 @@ const emit = defineEmits(["move"]);
   flex-shrink: 0;
   border-radius: 21px;
   background: #FFF;
-  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.20);
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.20);
 }
 .icon {
   margin-left: 23px;
@@ -113,6 +113,18 @@ const emit = defineEmits(["move"]);
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background 0.3s;
+}
+
+.more:hover {
+  background: rgba(20, 140, 136, 0.1);
+  transform: scale(1.05);
+}
+
+.more:active {
+  transform: scale(0.95);
 }
 
 .pass {
@@ -120,13 +132,25 @@ const emit = defineEmits(["move"]);
   height: 65px;
   flex-shrink: 0;
   border-radius: 8px;
-  border: #148C88;
+  border: none; /* Исправил, так как border был без толщины */
   background: #148C88;
   color: #FFF;
   font-size: 21px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background 0.3s;
+}
+
+.pass:hover {
+  background: #0f6f6b; /* Немного затемняется при наведении */
+  transform: scale(1.05);
+}
+
+.pass:active {
+  transform: scale(0.95);
+  background: #0c5a57; /* Ещё темнее при нажатии */
 }
 
 .payed {

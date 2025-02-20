@@ -65,6 +65,7 @@ header {
   align-items: center;
   flex-direction: row;
   gap: 38px;
+  margin-right: 82px;
 }
 
 .bell {

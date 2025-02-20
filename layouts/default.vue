@@ -4,7 +4,8 @@
 
 <template>
   <div class="page-container">
-    <Header />
+    <Header/>
+    <PopupMenu class="popup"/>
       <main class="content-wrap">
         <slot />
       </main>
@@ -29,5 +30,13 @@
   padding: 0;
   margin: 0;
 }
+
+.popup {
+  position: absolute; /* Или fixed, если нужно закрепить при скролле */
+  top: 251px;
+  left: 80px; /* Отступ слева */;
+  z-index: 1000;
+}
+
 
 </style>

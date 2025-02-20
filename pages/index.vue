@@ -8,7 +8,7 @@ const allPrograms = ref([
 ]);
 
 const myPrograms = ref([
-  { title: "Программа 1", deadline: "12-24 ноября", pathImg: "/images/myProgram.svg", altImg: "Изображение программы", payed: true },
+  { title: "Школа трекеров", deadline: "12-24 ноября", pathImg: "/images/myProgram.svg", altImg: "Изображение программы", payed: true },
 ]);
 
 const activeTab = ref("all"); // Храним выбранную вкладку

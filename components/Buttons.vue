@@ -17,6 +17,7 @@ watch(() => props.activeTab, (newValue) => {
 // Функция для обновления activeTab через emit
 const changeTab = (tab: string) => {
   selectedTab.value = tab;
+
   emit('update:activeTab', tab);
 };
 

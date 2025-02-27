@@ -5,8 +5,8 @@ const getHourText = (hours: number) => {
   return `${hours} часов`;
 };
 
-const allPrograms = ref([
-  ...Array.from({ length: 28 }, (_, i) => {
+const allPrograms = useState('allPrograms', () => {
+  return Array.from({ length: 28 }, (_, i) => {
     const hours = Math.floor(Math.random() * 24) + 1;
     return {
       title: `Программа ${i + 1}`,
@@ -15,8 +15,9 @@ const allPrograms = ref([
       altImg: "",
       payed: false
     };
-  })
-]);
+  });
+});
+
 
 const myPrograms = ref([
   { title: "Школа трекеров", deadline: "12-24 ноября", pathImg: "/images/myProgram.svg", altImg: "Изображение программы", payed: true },
@@ -130,5 +131,36 @@ const displayedPages = computed(() => {
 
 .pagination button.active {
   font-weight: 600;
+}
+
+@media (max-width: 768px) {
+
+  .tabs {
+    gap: 20px;
+  }
+
+  .tabs button {
+    font-size: 12px;
+  }
+
+  .program {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .pagination {
+    margin: 0;
+    align-self: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .program {
+    margin: 0;
+  }
 }
 </style>

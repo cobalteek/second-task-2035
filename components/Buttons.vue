@@ -1,8 +1,8 @@
 <script setup lang="ts">
 
-const props = defineProps<{
-  activeTab: { type: string, default: "all" }
-}>();
+const props = defineProps({
+  activeTab: { type: String, default: "all" }
+});
 
 const emit = defineEmits(['update:activeTab']);
 
@@ -62,4 +62,11 @@ button {
 button.active {
   font-weight: 600;
 }
+
+@media (max-width: 425px) {
+  button {
+    font-size: 25px;
+  }
+}
+
 </style>

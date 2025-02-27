@@ -1,12 +1,12 @@
 <script setup lang="ts">
-const path = '/'
+
 </script>
 
 <template>
   <header>
     <div class="head">
       <div class="logo">
-        <NuxtLink class="link" :to="path">
+        <NuxtLink class="link" to="/">
           ЛОГОТИП
         </NuxtLink>
       </div>
@@ -24,7 +24,6 @@ const path = '/'
 <style scoped>
 
 header {
-
   background: #148c88;
   width: 100%;
   height: 400px;

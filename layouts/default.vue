@@ -4,6 +4,7 @@
 
 <template>
   <div class="page-container">
+    <Menu />
     <Header/>
     <PopupMenu class="popup"/>
       <main class="content-wrap">
@@ -14,6 +15,12 @@
 </template>
 
 <style lang="scss">
+
+@media (max-width: 768px) {
+  Header, .popup {
+    display: none !important;
+  }
+}
 
 .page-container {
   display: flex;

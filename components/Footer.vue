@@ -57,4 +57,26 @@ const userAgreement = '/user_agreement'
   text-decoration: none;
 }
 
+@media (max-width: 768px) {
+  .foot {
+    font-size: 20px;
+    height: 184px;
+  }
+  .group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Две колонки */
+    gap: 15px 40px; /* Отступы между строками и колонками */
+    max-width: 400px;
+  }
+  .group .links {
+    width: auto; /* Автоматическая ширина */
+  }
+}
+
+@media (max-width: 425px) {
+  .foot {
+    font-size: 16px;
+  }
+}
+
 </style>

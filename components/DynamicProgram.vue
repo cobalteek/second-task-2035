@@ -14,12 +14,13 @@ const emit = defineEmits(["move"]);
 
 <template>
   <div class="box">
-    <div class="icon">
-      <img
-          v-if="pathImg"
-          :src="pathImg"
-          :alt="altImg"/>
-    </div>
+    <div class="icon" v-if="!pathImg"/>
+    <img
+        v-else
+        class="icon"
+        v-if="pathImg"
+        :src="pathImg"
+        :alt="altImg"/>
     <div class="titleBox">
       <div class="title">
         {{ title }}
@@ -33,12 +34,13 @@ const emit = defineEmits(["move"]);
     </div>
     <div class="buttonBox">
       <button
+          v-bind:class="{ 'single-button': payed, 'multiple-buttons': !payed }"
           class="more px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95"
           v-if="!payed"
       >
         {{ firstButton || "Подробнее" }}
       </button>
-      <button @click="emit('move')" class="pass">
+      <button @click="emit('move')" :class="['pass', { 'single-button': payed, 'multiple-buttons': !payed }]">
         {{ payed ? 'Смотреть' : 'Пройти'}}
       </button>
     </div>
@@ -46,6 +48,7 @@ const emit = defineEmits(["move"]);
 </template>
 
 <style scoped>
+
 .box {
   display: flex;
   flex-direction: row;
@@ -53,16 +56,17 @@ const emit = defineEmits(["move"]);
   align-items: center;
   width: 1265px;
   height: 216px;
-  flex-shrink: 0;
+  flex-shrink: 1;
   border-radius: 21px;
   background: #FFF;
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.20);
 }
+
 .icon {
   margin-left: 23px;
   width: 273px;
   height: 174px;
-  flex-shrink: 0;
+  flex-shrink: 1;
   border-radius: 13px;
   background: #E2DDDD;
 }
@@ -74,6 +78,7 @@ const emit = defineEmits(["move"]);
   margin-top: 30px;
   margin-left: 34px;
   gap: 30px;
+  flex-shrink: 1;
 }
 
 .title {
@@ -100,6 +105,7 @@ const emit = defineEmits(["move"]);
   margin-bottom: 21px;
   margin-left: auto;
   margin-right: 41px;
+  flex-shrink: 1;
 }
 
 .more {
@@ -132,7 +138,7 @@ const emit = defineEmits(["move"]);
   height: 65px;
   flex-shrink: 0;
   border-radius: 8px;
-  border: none; /* Исправил, так как border был без толщины */
+  border: none;
   background: #148C88;
   color: #FFF;
   font-size: 21px;
@@ -159,6 +165,55 @@ const emit = defineEmits(["move"]);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+@media (max-width: 768px) {
+  .box {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 460px;
+    height: auto;
+  }
+
+  .icon {
+    width: 430px;
+    height: 150px;
+    margin-left: 15px;
+    margin-top: 10px;
+  }
+
+  .titleBox {
+    margin-top: 15px;
+    margin-left: 15px;
+    gap: 10px;
+  }
+
+  .buttonBox {
+    margin-top: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+  }
+
+  .single-button {
+    width: 95%;
+  }
+
+  .multiple-buttons {
+    flex: 1;
+    max-width: 46%;
+  }
+}
+
+@media (max-width: 394px) {
+  .box {
+    width: 360px;
+  }
+
+  .icon {
+    width: 330px;
+  }
 }
 
 </style>

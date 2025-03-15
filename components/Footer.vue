@@ -50,6 +50,7 @@ const userAgreement = '/user_agreement'
   align-items: flex-start;
   gap: 87px;
   text-decoration: none;
+  margin-left: 25px;
 }
 
 .links {
@@ -67,11 +68,29 @@ const userAgreement = '/user_agreement'
     grid-template-columns: repeat(2, 1fr); /* Две колонки */
     gap: 15px 40px; /* Отступы между строками и колонками */
     max-width: 400px;
+    justify-content: center;
+    align-items: center;
   }
   .group .links {
-    width: auto; /* Автоматическая ширина */
+    width: 100%; /* Автоматическая ширина */
   }
 }
+
+@media (max-width: 950px) {
+  .foot {
+    font-size: 16px;
+    height: auto;
+    justify-content: center;
+    align-content: center;
+  }
+  .group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Две колонки */
+    gap: 5px 20px; /* Отступы между строками и колонками */
+    max-width: 400px;
+  }
+}
+
 
 @media (max-width: 425px) {
   .foot {

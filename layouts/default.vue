@@ -16,12 +16,6 @@
 
 <style lang="scss">
 
-@media (max-width: 768px) {
-  Header, .popup {
-    display: none !important;
-  }
-}
-
 .page-container {
   display: flex;
   flex-direction: column;
@@ -36,6 +30,7 @@
   width: 100%;
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 .popup {
@@ -45,5 +40,16 @@
   z-index: 1000;
 }
 
+@media (max-width: 1150px) {
+  .popup {
+    left: 60px
+  }
+}
+
+@media (max-width: 768px) {
+  Header, .popup {
+    display: none !important;
+  }
+}
 
 </style>

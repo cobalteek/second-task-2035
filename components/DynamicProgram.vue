@@ -54,7 +54,9 @@ const emit = defineEmits(["move"]);
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  width: 1265px;
+  max-width: 1265px;
+  min-width: 850px;
+  width: 88%;
   height: 216px;
   flex-shrink: 1;
   border-radius: 21px;
@@ -64,9 +66,9 @@ const emit = defineEmits(["move"]);
 
 .icon {
   margin-left: 23px;
+  min-width: 273px;
   width: 273px;
-  height: 174px;
-  flex-shrink: 1;
+  aspect-ratio: 273 / 174;
   border-radius: 13px;
   background: #E2DDDD;
 }
@@ -78,7 +80,7 @@ const emit = defineEmits(["move"]);
   margin-top: 30px;
   margin-left: 34px;
   gap: 30px;
-  flex-shrink: 1;
+  flex-shrink: 0;
 }
 
 .title {
@@ -101,17 +103,24 @@ const emit = defineEmits(["move"]);
   display: flex;
   justify-self: end;
   align-self: end;
+  width: 520px;
   gap: 24px;
   margin-bottom: 21px;
   margin-left: auto;
   margin-right: 41px;
   flex-shrink: 1;
 }
+.single-button {
+  margin-right: 4px;
+  margin-left: auto;
+}
 
 .more {
-  width: 246px;
+  max-width: 246px;
+  min-width: 50px;
+  width: 100%;
   height: 65px;
-  flex-shrink: 0;
+  flex-shrink: 1;
   border-radius: 8px;
   border: 1px solid #148C88;
   color: #148C88;
@@ -134,9 +143,11 @@ const emit = defineEmits(["move"]);
 }
 
 .pass {
-  width: 246px;
+  max-width: 246px;
+  min-width: 50px;
+  width: 100%;
   height: 65px;
-  flex-shrink: 0;
+  flex-shrink: 1;
   border-radius: 8px;
   border: none;
   background: #148C88;
@@ -167,19 +178,62 @@ const emit = defineEmits(["move"]);
   line-height: normal;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1150px) {
   .box {
     flex-direction: column;
     align-items: flex-start;
-    width: 460px;
+    width: 80%;
+    min-width: 300px;
     height: auto;
   }
 
   .icon {
-    width: 430px;
-    height: 150px;
-    margin-left: 15px;
+    width: 95%;
+    margin-left: 16px;
     margin-top: 10px;
+  }
+
+  .titleBox {
+    margin-bottom: 15px;
+  }
+
+  .buttonBox {
+    gap: 25px;
+  }
+  .pass {
+    margin-right: 19px;
+  }
+}
+
+@media (max-width: 950px) {
+
+  .icon {
+    margin-left: 10px;
+  }
+
+  .buttonBox {
+    padding-left: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+  }
+
+  .single-button {
+    max-width: 95%;
+  }
+
+  .multiple-buttons {
+    flex: 1;
+    max-width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .icon {
+    width: 95%;
+    margin-left: 15px;
   }
 
   .titleBox {
@@ -196,23 +250,17 @@ const emit = defineEmits(["move"]);
     gap: 10px;
   }
 
-  .single-button {
-    width: 95%;
-  }
-
-  .multiple-buttons {
-    flex: 1;
-    max-width: 46%;
-  }
 }
 
-@media (max-width: 394px) {
+
+@media (max-width: 395px) {
   .box {
     width: 360px;
   }
 
   .icon {
-    width: 330px;
+    width: 95%;
+    margin-left: 10px;
   }
 }
 

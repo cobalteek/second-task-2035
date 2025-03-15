@@ -36,14 +36,20 @@ const paginatedPrograms = computed(() => {
 });
 
 function moveProgram(index: number) {
+  const globalIndex = (currentPage.value - 1) * itemsPerPage + index;
+
   if (activeTab.value === "all") {
-    const program = allPrograms.value.splice(index, 1)[0];
+    const program = allPrograms.value.splice(globalIndex, 1)[0];
     program.payed = !program.payed;
     myPrograms.value.push(program);
   } else {
-    const program = myPrograms.value.splice(index, 1)[0];
+    const program = myPrograms.value.splice(globalIndex, 1)[0];
     program.payed = !program.payed;
     allPrograms.value.push(program);
+  }
+
+  if (currentPage.value > 1 && paginatedPrograms.value.length === 0) {
+    currentPage.value--;
   }
 }
 
@@ -70,17 +76,35 @@ const displayedPages = computed(() => {
 
   return pages;
 });
+
+watch(currentPage, () => {
+  const targetElement = document.querySelector('.buttons')
+  if (!targetElement) return
+
+  const scrollDuration = 250; // Уменьшенная длительность
+  const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+  const scrollStep = (targetPosition - window.scrollY) / (scrollDuration / 15);
+
+  const scrollInterval = setInterval(() => {
+    if (Math.abs(window.scrollY - targetPosition) > Math.abs(scrollStep)) {
+      window.scrollBy(0, scrollStep);
+    } else {
+      window.scrollTo(0, targetPosition);
+      clearInterval(scrollInterval);
+    }
+  }, 15);
+})
+
+
 </script>
 
 <template>
   <div class="program">
     <Buttons class="buttons" v-model:active-tab="activeTab" @click="currentPage = 1"/>
     <DynamicProgram v-for="(field, index) in paginatedPrograms" :key="index" v-bind="field" @move="moveProgram(index)" />
-
     <p class="notFound" v-if="programField.length < 1">
       {{ activeTab === 'all' ? "Нет доступных программ" : "Нет активных программ" }}
     </p>
-
     <div class="pagination" v-if="totalPages > 1">
       <button v-for="page in displayedPages" :key="page" @click="page !== '...' ? (currentPage = page) : null" :class="{ active: currentPage === page }">
         {{ page }}
@@ -96,9 +120,9 @@ const displayedPages = computed(() => {
   align-self: start;
   flex-direction: column;
   gap: 45px;
-  margin-left: 503px;
+  margin-left: 30%;
   margin-bottom: 29px;
-  width: 100%;
+  width: 70%;
 }
 
 .notFound {
@@ -131,6 +155,38 @@ const displayedPages = computed(() => {
 
 .pagination button.active {
   font-weight: 600;
+}
+
+@media (max-width: 1280px) {
+  .program {
+    margin-left: 250px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .buttons {
+    margin-left: 40px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .buttons {
+    margin-left: 0;
+  }
+  .program {
+    margin-left: 290px;
+  }
+}
+
+@media (max-width: 830px) {
+  .buttons {
+    margin-left: 0;
+  }
+  .program {
+    justify-content: center;
+
+    margin-left: 310px;
+  }
 }
 
 @media (max-width: 768px) {

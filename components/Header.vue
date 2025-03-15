@@ -88,5 +88,18 @@ header {
   color: #fff;
 }
 
+@media (max-width: 1150px) {
+  .name {
+    top: 284px;
+    left: 350px;
+  }
+}
+
+@media (max-width: 830px) {
+  .name {
+    top: 304px;
+    left: 310px;
+  }
+}
 
 </style>

@@ -1,6 +1,5 @@
 export default defineNuxtConfig({
   app: {
-    baseURL: '/second-task-2035/',
     head: {
       titleTemplate: 'Second Task 2035',
       title: '0.0.1',
